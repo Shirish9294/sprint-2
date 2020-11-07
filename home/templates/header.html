@@ -1,0 +1,113 @@
+{% load static %}
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        3900-851-team-4@gmail.com
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        +1 402-406-2957
+                    </div>
+                </div>
+
+            <div class = "ht-right">
+                {% if user.id is not NONE %}
+                        <a href="/user" class="login-panel"><i class="fa fa-user"></i>{{ user  }}</a>
+                        <a href="/logout" class="login-panel"><i class="fa fa-user"></i>Log-Out</a>
+                    {% else %}
+                        <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                        <a href="/signup" class="login-panel"><i class="fa fa-user"></i> Sign-Up </a>
+                    {% endif %}
+            </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="{% static 'img/shop-logo3.png' %}" alt="" style="width:100px;height:100px; position:relative; left:10px; top:-25px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <button type="{% static '' %}button" class="category-btn">All Categories</button>
+                            <div class="input-group">
+                                <input type="text" placeholder="What do you need?">
+                                <button type="button"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="heart-icon">
+                                <a href="#">
+                                    <i class="icon_heart_alt"></i>
+                                    <span></span>
+                                </a>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="#">
+                                    <i class="icon_bag_alt"></i>
+                                    <span></span>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="select-total">
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item" style="position:relative; top:-55px;">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All departments</span>
+                        <ul class="depart-hover">
+                            <li class="selected">
+                                <a href="/product/">All</a>
+                            </li>
+                            <li >
+                                <a href="/product/jeans/">Jeans</a>
+                            </li>
+                            <li >
+                                <a href="/product/shirts/">Shirts</a>
+                            </li>
+                            <li >
+                                <a href="/product/shoes/">Shoes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="/p_list">Shop</a></li>
+                        <li><a href="#">Contact</a></li>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>

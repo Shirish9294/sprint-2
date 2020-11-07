@@ -1,0 +1,46 @@
+{% extends 'homebase.html' %}
+{% load static %}
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class='row'>
+            <div class="col-lg-6">
+                <br>
+                <img src="
+                        {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                     style="width:500px;height:500px;">
+            </div>
+            <div class="col-lg-5">
+                <br>
+                <h1 style="font-size: 40px;">{{ product.name }}</h1>
+                <p></p>
+                <h1 style="font-size: 35px;">
+                    <a href="{{ product.category.get_absolute_url }}" style="color:#706e56;">
+                        {{ product.category }}
+                    </a>
+                </h1>
+                <br>
+                <p style="font-size: 30px;">
+                    {{ product.description|linebreaks }}
+                </p>
+                <br>
+                <form action="">
+                    <label for="size">Select a Size:</label>
+                    <select name="size" id="size">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </form>
+                <div>
+                    <p class="price" style="color: #e7ab3c;font-size: 20px;">${{ product.price }}</p>
+                    <br>
+                    <input type="submit" value="Add to Cart">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
