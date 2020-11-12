@@ -18,12 +18,17 @@ from user.models import UserProfile
 def index(request):
     current_user = request.user
     profile = UserProfile.objects.get(user_id=current_user.id)
-    return render(request=request,
-                  template_name="user_profile.html")
+    context = {'profile': profile}
+    # return render(request=request,
+    #               template_name="user_profile.html")
+    return render(request, 'user_profile.html', context)
 
 
 def login_form(request):
     if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
@@ -31,8 +36,6 @@ def login_form(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                userprofile = UserProfile.objects.get(user_id=user.id)
-                request.session['userimage'] = userprofile.image.url
                 return redirect('/')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -51,6 +54,7 @@ def signup_form(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            email = form.cleaned_data.get('email')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
 
