@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, request
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.mail import send_mail
 
 # Create your views here.
 from django.template import context
@@ -73,3 +74,4 @@ def logout_func(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect('/login')
+
