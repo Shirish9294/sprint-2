@@ -49,7 +49,7 @@ def login_form(request):
 
 def signup_form(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -65,11 +65,12 @@ def signup_form(request):
             data.save()
 
             messages.success(request, 'Your account has been created!')
+
             return redirect('/signup')
         else:
             messages.warning(request, form.errors)
             return redirect('./')
-
+        context.update({'username': username, 'email': email})
     form = SignUpForm()
     return render(request, 'signup.html', context={'form': form})
 
