@@ -16,8 +16,8 @@ from user.models import UserProfile
 
 @login_required(login_url='/login')
 def index(request):
-    current_user = request.user
-    profile = UserProfile.objects.get(user_id=current_user.id)
+    user = request.user
+    profile = UserProfile.objects.get(user_id=user.id)
     context = {'profile': profile}
     # return render(request=request,
     #               template_name="user_profile.html")
