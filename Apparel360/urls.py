@@ -36,5 +36,7 @@ urlpatterns = [
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
     # path('orders/', include('orders.urls', namespace='orders')),
+    path('user_profile/', UserViews.user_update, name = 'user_profile'),
+    path('update_user_information', UserViews.user_update, name = 'update_user_information'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

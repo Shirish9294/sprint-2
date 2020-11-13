@@ -143,3 +143,7 @@ EMAIL_HOST_USER = 'django.website.testing@gmail.com'
 EMAIL_HOST_PASSWORD = 'Abc@12345'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'

@@ -1,0 +1,60 @@
+{% extends 'homebase.html' %}
+
+{% block title %}  {{ user.first_name }} Profile  Update{% endblock %}
+{% block content %}
+<div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    {% include "user_panel.html" %}
+                </div>
+                <div class="col-lg-9">
+                    <div class="breadcrumb-text">
+                        <a href="/"><i class="fa fa-home"></i>Home</a>
+                        <span>Update User Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="breacrumb-section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-3">
+                    {% include "user_panel.html" %}
+                </div>
+
+                <div class="col-md-9">
+                    <div class="register-login-section spad">
+                        <div class="col-lg-6 offset-lg-2">
+                            <h3 class="login-form">User Profile Update</h3>
+                        </div>
+                    </div>
+
+                    <div class="group-input">
+                        <form method="POST" enctype = "multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ user_form.as_p  }}
+                                {{ profile_form.as_p  }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="primary-btn" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+{% endblock %}
+{% block footer %}{% include 'footer.html' %}{% endblock %}

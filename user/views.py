@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 # Create your views here.
 from django.template import context
 
-from user.forms import SignUpForm
+from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
 
 
@@ -19,8 +19,6 @@ def index(request):
     user = request.user
     profile = UserProfile.objects.get(user_id=user.id)
     context = {'profile': profile}
-    # return render(request=request,
-    #               template_name="user_profile.html")
     return render(request, 'user_profile.html', context)
 
 
@@ -80,3 +78,26 @@ def logout_func(request):
     messages.info(request, "Logged out successfully!")
     return redirect('/login')
 
+@login_required
+def dashboard(request):
+    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+@login_required(login_url='/login') # Check login
+def user_update(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user) # request.user is user  data
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your account has been updated!')
+            return HttpResponseRedirect('/user')
+    else:
+
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.userprofile) #"userprofile" model -> OneToOneField relatinon with user
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return render(request, 'update_user_information.html', context)
