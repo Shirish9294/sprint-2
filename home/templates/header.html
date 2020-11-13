@@ -15,7 +15,7 @@
 
             <div class = "ht-right">
                 {% if user.id is not NONE %}
-                        <a href="/user" class="login-panel"><i class="fa fa-user"></i>{{ user  }}</a>
+                        <a href="/user" class="login-panel"><i><img src = "{{ request.session.userimage }}" style = "height: 35px; width: 35px; border-radius: 10%"/></i>{{ user  }}</a>
                         <a href="/logout" class="login-panel"><i class="fa fa-user"></i>Log-Out</a>
                     {% else %}
                         <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>

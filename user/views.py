@@ -34,6 +34,9 @@ def login_form(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                current_user = request.user
+                userprofile = UserProfile.objects.get(user_id=current_user.id)
+                request.session['userimage'] = userprofile.image.url
                 return redirect('/')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -59,7 +62,7 @@ def signup_form(request):
             current_user = request.user
             data = UserProfile()
             data.user_id = current_user.id
-            data.image = "images/user.png"
+            data.image = "images/users/user.png"
             data.save()
 
             messages.success(request, 'Your account has been created!')

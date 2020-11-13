@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     city = models.CharField(blank=True, max_length=50)
     state = models.CharField(blank=True, max_length=50)
     country = models.CharField(blank=True, max_length=50)
-    image = models.ImageField(blank=True, null=True, upload_to='')
+    image = models.ImageField(blank=True, null=True, upload_to='images/users/')
 
     def __str__(self):
         return self.user.username
